@@ -44,7 +44,7 @@
     <modification>languages/english.xml</modification>
 		<modification>languages/russian.xml</modification>
 		<modification>languages/russian-utf8.xml</modification>
-    <require-file name="overlib_mini.js" destination="$themedir/scripts" />
+    <require-file name="overlib.js" destination="$themedir/scripts" />
     <require-file name="overlib_adaptive_width.js" destination="$themedir/scripts" />
     <redirect url="?action=admin;area=modsettings;sa=general" />
   </install>
@@ -55,7 +55,7 @@
     <modification reverse="true">languages/english.xml</modification>
 		<modification reverse="true">languages/russian.xml</modification>
 		<modification reverse="true">languages/russian-utf8.xml</modification>
-    <remove-file name="$themedir/scripts/overlib_mini.js" />
+    <remove-file name="$themedir/scripts/overlib.js" />
     <remove-file name="$themedir/scripts/overlib_adaptive_width.js" />
   </uninstall>
 

@@ -52,7 +52,7 @@ function NiceTooltip($body, $caption='', $smileys=true, $cache_id='')
 	}
 	</style>';
   	$context['html_headers'] .=	'
-	<script language="JavaScript" type="text/javascript" src="' . $settings['default_theme_url'] . (!empty($modSettings['NiceTooltips_scripturl']) ? '/' . $modSettings['NiceTooltips_scripturl'] : '') .	'/overlib_mini.js"></script>';
+	<script language="JavaScript" type="text/javascript" src="' . $settings['default_theme_url'] . (!empty($modSettings['NiceTooltips_scripturl']) ? '/' . $modSettings['NiceTooltips_scripturl'] : '') .	'/overlib.js"></script>';
     $context['html_headers'] .=	'
 	<script language="JavaScript" type="text/javascript" src="' . $settings['default_theme_url'] . (!empty($modSettings['NiceTooltips_scripturl']) ? '/' . $modSettings['NiceTooltips_scripturl'] : '') . '/overlib_adaptive_width.js"></script>';
     $context['overlib_loaded'] = true;
