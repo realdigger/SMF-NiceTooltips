@@ -1,0 +1,187 @@
+<?xml version="1.0"?>
+<!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  This is an example modification file for SMF packages.
+
+  ATTENTION: If you are trying to install this manually, you should try
+  the package manager.  If it will not work for you, please take a look
+  at the following for information on this format:
+    http://mods.simplemachines.org/docs/manual-install.php
+
+================================================================================
+
+  Modification files can be used to modify files so that they do what
+  your package needs them to do to work properly.
+
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
+  <id>digger:NiceTooltips</id>
+  <version>1.9</version>
+
+<!-- Main code -->
+
+	<file name="$sourcedir/MessageIndex.php">
+
+  	<operation>
+
+      <search position="replace"><![CDATA[LEFT(mf.body, 384) AS firstBody]]></search>
+
+      <add><![CDATA[LEFT(mf.body, ". (!empty($modSettings['NiceTooltips_lenght']) ? $modSettings['NiceTooltips_lenght'] : 384) .") AS firstBody]]></add>
+      
+    </operation>
+    
+    <operation>
+
+      <search position="after"><![CDATA[			// Limit them to 128 characters - do this FIRST because it's a lot of wasted censoring otherwise.]]></search>
+
+			<add><![CDATA[      // * NiceTooltips mod
+      $row['nice_tooltip_first_msg'] = NiceTooltip($row['firstBody'], $row['firstSubject'], $row['firstSmileys'], $row['ID_FIRST_MSG']);
+
+]]></add>
+
+		</operation>
+		
+		<operation>
+
+      <search position="replace"><![CDATA[					'link' => '<a href="' . $scripturl . '?topic=' . $row['ID_TOPIC'] . '.0">' . $row['firstSubject'] . '</a>']]></search>
+
+			<add><![CDATA[					// * NiceTooltips mod
+					'link' => '<a href="' . $scripturl . '?topic=' . $row['ID_TOPIC'] . '.0"'  . $row['nice_tooltip_first_msg'] . ' >' . $row['firstSubject'] . '</a>'
+]]></add>
+
+		</operation>
+
+    </file>
+
+    <file name="$sourcedir/Recent.php">
+
+    <operation>
+
+      <search position="replace"><![CDATA[LEFT(ms.body, 384) AS firstBody]]></search>
+
+      <add><![CDATA[LEFT(ms.body, '. (!empty($modSettings['NiceTooltips_lenght']) ? $modSettings['NiceTooltips_lenght'] : 384) .') AS firstBody]]></add>
+    </operation>
+
+    <operation>
+
+      <search position="after"><![CDATA[		// Clip the strings first because censoring is slow :/. (for some reason?)]]></search>
+
+      <add><![CDATA[		// * NiceTooltips mod
+		$row['nice_tooltip_first_msg'] = NiceTooltip($row['firstBody'], $row['firstSubject'], $row['firstSmileys'], $row['ID_FIRST_MSG']);
+
+]]></add>
+
+    </operation>
+
+    <operation>
+
+      <search position="replace"><![CDATA[				'link' => '<a href="' . $scripturl . '?topic=' . $row['ID_TOPIC'] . '.0;topicseen">' . $row['firstSubject'] . '</a>']]></search>
+
+      <add><![CDATA[        // * NiceTooltips mod
+				'link' => '<a href="' . $scripturl . '?topic=' . $row['ID_TOPIC'] . '.0"'  . $row['nice_tooltip_first_msg'] . ' >' . $row['firstSubject'] . '</a>'
+]]></add>
+    </operation>
+
+  </file>
+
+<!-- Admin settings -->
+
+  <file name="$sourcedir/ModSettings.php">
+
+    <operation>
+
+      <search position="after"><![CDATA[// By default do the basic settings.]]></search>
+
+      <add><![CDATA[
+   // * NiceTooltips mod
+  $subActions['nicetooltips'] = 'ModifyNiceTooltipsSettings';
+]]></add>
+
+    </operation>
+
+    <operation>
+
+      <search position="after"><![CDATA[// Select the right tab based on the sub action.]]></search>
+
+      <add><![CDATA[
+  // * NiceTooltips mod
+  $context['admin_tabs']['tabs']['nicetooltips'] = array(
+        'title' =>  $txt['NiceTooltips'],
+        'href' => $scripturl . '?action=featuresettings;sa=nicetooltips;sesc=' . $context['session_id'],
+  );
+  // NiceTooltips mod *
+]]></add>
+
+    </operation>
+
+    <operation>
+
+      <search position="after"><![CDATA[// Default to core (I assume)]]></search>
+
+      <add><![CDATA[
+    // * NiceTooltips mod
+    $subActions['nicetooltips'] = 'ModifyNiceTooltipsSettings';
+    // NiceTooltips mod
+]]></add>
+
+    </operation>
+
+    <operation>
+
+      <search position="end" />
+
+      <add><![CDATA[
+// * NiceTooltips mod
+function ModifyNiceTooltipsSettings()
+{
+  global $db_prefix, $context, $scripturl, $settings, $txt;
+
+  $config_vars = array(
+    array('int', 'NiceTooltips_lenght'),
+    array('check', 'NiceTooltips_censored'),
+    array('text', 'NiceTooltips_FGCOLOR'),
+    array('text', 'NiceTooltips_BGCOLOR'),
+    array('text', 'NiceTooltips_TEXTCOLOR'),
+    array('text', 'NiceTooltips_TEXTSIZE'),
+    array('text', 'NiceTooltips_CAPCOLOR'),
+		array('text', 'NiceTooltips_OPACITY'),
+		array('int', 'NiceTooltips_DELAY'),
+);
+
+  if (isset($_GET['save']))
+  {
+    saveDBSettings($config_vars);
+    redirectexit('action=featuresettings;sa=nicetooltips');
+  }
+
+  $context['post_url'] = $scripturl . '?action=featuresettings2;save;sa=nicetooltips';
+  $context['settings_title'] = $txt['NiceTooltips'];
+  prepareDBSettingContext($config_vars);
+
+}
+// NiceTooltips mod Mod by Digger *
+]]></add>
+
+    </operation>
+
+  </file>
+  
+  <file name="$sourcedir/ManagePermissions.php">
+
+		<operation>
+
+			<search position="after"><![CDATA[	// All permission groups that will be shown in the left column.]]></search>
+
+			<add><![CDATA[
+	// * NiceTooltips mod
+	$permissionList['board']['general_board']['disable_nicetooltips'] = false;
+	// NiceTooltips mod *
+
+]]></add>
+
+    </operation>
+
+	</file>
+
+</modification>
