@@ -17,7 +17,7 @@
 
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 	<id>digger:NiceTooltips</id>
-	<version>1.9</version>
+	<version>1.10</version>
 
 <!-- Main code -->
 
@@ -63,7 +63,10 @@ function NiceTooltip($body, $caption='', $smileys=true, $cache_id='')
 	{
   	censorText($body);
   	censorText($caption);
-  }
+    }
+
+    // Fix broken bbcodes
+    $body
 
 	// Parse html code and smiles, replace unwanted entities.
 	$body = htmlspecialchars(addslashes(parse_bbc($body, $smileys, $cache_id)));
@@ -85,9 +88,9 @@ function NiceTooltip($body, $caption='', $smileys=true, $cache_id='')
 }
 // NiceTooltips mod *
 ]]></add>
-					
+
 		</operation>
 
  	</file>
- 		
+
 </modification>

@@ -1,6 +1,15 @@
 <?php
+/**
+ * @package SMF NiceTooltips Mod
+ * @author digger
+ * @copyright 2009-2016
+ * @license Artistic License 1.0
+ * @version 1.10
+ *
+ * To run this install manually please make sure you place this
+ * in the same place and SSI.php and index.php
+ */
 
-// SMF 2.x
 if (isset($smcFunc))
 {
 	$smcFunc['db_insert']('ignore',
@@ -38,7 +47,7 @@ if (isset($smcFunc))
 	array('variable' => 'string-255', 'value' => 'string-65534'),
 	array('NiceTooltips_TEXTCOLOR', '#000000'),
 	array('variable'));
-	
+
 	$smcFunc['db_insert']('ignore',
 	'{db_prefix}settings',
 	array('variable' => 'string-255', 'value' => 'string-65534'),
