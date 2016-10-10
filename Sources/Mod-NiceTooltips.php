@@ -13,8 +13,13 @@ function NiceTooltip($body = '', $caption = '', $smileys = true, $cache_id = '')
 {
     global $context, $settings, $modSettings;
 
-    // Is it disabled or empty? Check permission.
-    if ((allowedTo('disable_nicetooltips') && empty($context['user']['is_admin'])) || empty($modSettings['NiceTooltips_lenght']) || empty($body)) {
+    // Is it disabled or empty? Check permission. Don't show tooltips for mobiles.
+    if (
+        (allowedTo('disable_nicetooltips') && empty($context['user']['is_admin'])) ||
+        empty($modSettings['NiceTooltips_lenght']) ||
+        empty($body) ||
+        (!empty($context['browser']['is_iphone']) || !empty($context['browser']['is_android']))
+    ) {
         return ' title="' . $caption . '" ';
     }
 
@@ -48,12 +53,12 @@ function NiceTooltip($body = '', $caption = '', $smileys = true, $cache_id = '')
     // Fix broken bbcodes
     //$body = preg_replace('/\[[^\/]+\].*$/i', '' , $body);
 
-	// Parse html code and smiles, replace unwanted entities.
-	$body = htmlspecialchars(addslashes(parse_bbc($body, $smileys, $cache_id)));
-	$caption = htmlspecialchars(addslashes($caption));
+    // Parse html code and smiles, replace unwanted entities.
+    $body = htmlspecialchars(addslashes(parse_bbc($body, $smileys, $cache_id)));
+    $caption = htmlspecialchars(addslashes($caption));
 
- 	// Make a tooltip.
-	$tooltip = ' onmouseover="return overlib(\'' . $body . '\',
+    // Make a tooltip.
+    $tooltip = ' onmouseover="return overlib(\'' . $body . '\',
 	FGCLASS,\'' . 'nice_tooltip_fgclass' . '\',
 	BGCLASS,\'' . 'nice_tooltip_bgclass' . '\',
 	TEXTCOLOR,\'' . $modSettings['NiceTooltips_TEXTCOLOR'] . '\',
@@ -63,7 +68,7 @@ function NiceTooltip($body = '', $caption = '', $smileys = true, $cache_id = '')
 	CAPTION,\'' . $caption . '\',
 	CELLPAD,4,ADAPTIVE_WIDTH,HAUTO,VAUTO)" onmouseout="return nd();" ';
 
-	unset($caption, $body);
-	return $tooltip;
+    unset($caption, $body);
+    return $tooltip;
 }
  
