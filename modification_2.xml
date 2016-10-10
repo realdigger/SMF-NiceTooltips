@@ -35,6 +35,7 @@
 			<search position="after"><![CDATA[			if (!empty($settings['message_index_preview']))]]></search>
 
 			<add><![CDATA[      // * NiceTooltips mod
+	  require_once($sourcedir . '/Mod-NiceTooltips.php');
       $row['nice_tooltip_first_msg'] = NiceTooltip($row['first_body'], $row['first_subject'], $row['first_smileys'], $row['id_first_msg']);
 
 ]]></add>
@@ -67,6 +68,7 @@
 			<search position="after"><![CDATA[		if (!empty($settings['message_index_preview']))]]></search>
 
 			<add><![CDATA[     // * NiceTooltips mod
+	 require_once($sourcedir . '/Mod-NiceTooltips.php');
      $row['nice_tooltip_first_msg'] = NiceTooltip($row['first_body'], $row['first_subject'], $row['first_smileys'], $row['id_first_msg']);
 
 ]]></add>
@@ -103,6 +105,12 @@
 		array('text', 'NiceTooltips_CAPCOLOR'),
 		array('text', 'NiceTooltips_OPACITY'),
 		array('int', 'NiceTooltips_DELAY'),
+		array(
+            'permissions',
+            'disable_nicetooltips',
+            'label' => $txt['permissionname_disable_nicetooltips'],
+            'subtext' => $txt['permissionhelp_disable_nicetooltips']
+        ),
 		'',
 		// NiceTooltips mod *
 ]]></add>
@@ -110,22 +118,5 @@
     </operation>
     
 	</file>
-	
-	<file name="$sourcedir/ManagePermissions.php">
 
-		<operation>
-
-			<search position="after"><![CDATA[	// All permission groups that will be shown in the left column on classic view.]]></search>
-
-			<add><![CDATA[
-	// * NiceTooltips mod
-	$permissionList['board']['disable_nicetooltips'] = array(false, 'general_board', 'moderate');
-	// NiceTooltips mod *
-
-]]></add>
-
-    </operation>
-
-	</file>
-        
 </modification>

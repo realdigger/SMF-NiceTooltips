@@ -36,6 +36,7 @@
       <search position="after"><![CDATA[			// Limit them to 128 characters - do this FIRST because it's a lot of wasted censoring otherwise.]]></search>
 
 			<add><![CDATA[      // * NiceTooltips mod
+	  require_once($sourcedir . '/Mod-NiceTooltips.php');
       $row['nice_tooltip_first_msg'] = NiceTooltip($row['firstBody'], $row['firstSubject'], $row['firstSmileys'], $row['ID_FIRST_MSG']);
 
 ]]></add>
@@ -68,6 +69,7 @@
       <search position="after"><![CDATA[		// Clip the strings first because censoring is slow :/. (for some reason?)]]></search>
 
       <add><![CDATA[		// * NiceTooltips mod
+        require_once($sourcedir . '/Mod-NiceTooltips.php');
 		$row['nice_tooltip_first_msg'] = NiceTooltip($row['firstBody'], $row['firstSubject'], $row['firstSmileys'], $row['ID_FIRST_MSG']);
 
 ]]></add>
@@ -145,8 +147,14 @@ function ModifyNiceTooltipsSettings()
     array('text', 'NiceTooltips_TEXTCOLOR'),
     array('text', 'NiceTooltips_TEXTSIZE'),
     array('text', 'NiceTooltips_CAPCOLOR'),
-		array('text', 'NiceTooltips_OPACITY'),
-		array('int', 'NiceTooltips_DELAY'),
+	array('text', 'NiceTooltips_OPACITY'),
+	array('int', 'NiceTooltips_DELAY'),
+	array(
+      'permissions',
+      'disable_nicetooltips',
+      'label' => $txt['permissionname_disable_nicetooltips'],
+      'subtext' => $txt['permissionhelp_disable_nicetooltips']
+    ),
 );
 
   if (isset($_GET['save']))
@@ -166,22 +174,5 @@ function ModifyNiceTooltipsSettings()
     </operation>
 
   </file>
-  
-  <file name="$sourcedir/ManagePermissions.php">
-
-		<operation>
-
-			<search position="after"><![CDATA[	// All permission groups that will be shown in the left column.]]></search>
-
-			<add><![CDATA[
-	// * NiceTooltips mod
-	$permissionList['board']['general_board']['disable_nicetooltips'] = false;
-	// NiceTooltips mod *
-
-]]></add>
-
-    </operation>
-
-	</file>
 
 </modification>
