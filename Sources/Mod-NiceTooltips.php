@@ -5,7 +5,6 @@
  * @author digger @ http://mysmf.ru
  * @copyright 2016, digger
  * @license Artistic License
- * @version 1.12
  */
 
 
@@ -40,10 +39,13 @@ function NiceTooltip($body = '', $caption = '', $smileys = true, $cache_id = '')
 	.nice_tooltip_bgclass img, .nice_tooltip_fgclass img{
     height:auto; max-width: 200px;
 	</style>';
-        $context['html_headers'] .= '
-	<script language="JavaScript" type="text/javascript" src="' . $settings['default_theme_url'] . (!empty($modSettings['NiceTooltips_scripturl']) ? '/' . $modSettings['NiceTooltips_scripturl'] : '') . '/overlib.js"></script>';
-        $context['html_headers'] .= '
-	<script language="JavaScript" type="text/javascript" src="' . $settings['default_theme_url'] . (!empty($modSettings['NiceTooltips_scripturl']) ? '/' . $modSettings['NiceTooltips_scripturl'] : '') . '/overlib_adaptive_width.js"></script>';
+        $context['insert_after_template'] .= '
+	<script type="text/javascript" src="' . $settings['default_theme_url'] . '/scripts/overlib.js"></script>';
+        $context['insert_after_template'] .= '
+	<script type="text/javascript" src="' . $settings['default_theme_url'] . '/scripts/overlib_adaptive_width.js"></script>
+	<script type="text/javascript"><!-- // --><![CDATA[
+	    var ol_close="[X]";
+	// ]]></script>';
         $context['overlib_loaded'] = true;
     }
 

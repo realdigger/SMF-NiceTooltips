@@ -27,12 +27,6 @@ if (isset($smcFunc))
 	$smcFunc['db_insert']('ignore',
 	'{db_prefix}settings',
 	array('variable' => 'string-255', 'value' => 'string-65534'),
-	array('NiceTooltips_scripturl', 'scripts'),
-	array('variable'));
-
-	$smcFunc['db_insert']('ignore',
-	'{db_prefix}settings',
-	array('variable' => 'string-255', 'value' => 'string-65534'),
 	array('NiceTooltips_FGCOLOR', '#F6F6F6'),
 	array('variable'));
 
@@ -83,7 +77,6 @@ else
 {
   db_query("INSERT IGNORE INTO {$db_prefix}settings (`variable`, `value`) VALUES ('NiceTooltips_lenght', '0') ", __FILE__, __LINE__);
 	db_query("INSERT IGNORE INTO {$db_prefix}settings (`variable`, `value`) VALUES ('NiceTooltips_censored', '0') ", __FILE__, __LINE__);
-	db_query("INSERT IGNORE INTO {$db_prefix}settings (`variable`, `value`) VALUES ('NiceTooltips_scripturl', '') ", __FILE__, __LINE__);
 	db_query("INSERT IGNORE INTO {$db_prefix}settings (`variable`, `value`) VALUES ('NiceTooltips_FGCOLOR', '#F6F6F6') ", __FILE__, __LINE__);
 	db_query("INSERT IGNORE INTO {$db_prefix}settings (`variable`, `value`) VALUES ('NiceTooltips_BGCOLOR', '#4F7394') ", __FILE__, __LINE__);
 	db_query("INSERT IGNORE INTO {$db_prefix}settings (`variable`, `value`) VALUES ('NiceTooltips_TEXTCOLOR', '#000000') ", __FILE__, __LINE__);
