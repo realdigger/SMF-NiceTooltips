@@ -37,6 +37,8 @@ function NiceTooltip($body = '', $caption = '', $smileys = true, $cache_id = '')
 	background-color: ' . $modSettings['NiceTooltips_BGCOLOR'] . ';
 	opacity: ' . $modSettings['NiceTooltips_OPACITY'] / 100 . ';
 	}
+	.nice_tooltip_bgclass img, .nice_tooltip_fgclass img{
+    height:auto; max-width: 200px;
 	</style>';
         $context['html_headers'] .= '
 	<script language="JavaScript" type="text/javascript" src="' . $settings['default_theme_url'] . (!empty($modSettings['NiceTooltips_scripturl']) ? '/' . $modSettings['NiceTooltips_scripturl'] : '') . '/overlib.js"></script>';
