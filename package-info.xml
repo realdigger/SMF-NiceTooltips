@@ -12,7 +12,7 @@
 <package-info xmlns="http://www.simplemachines.org/xml/package-info">
     <id>digger:NiceTooltips</id>
     <name>NiceTooltips</name>
-    <version>1.11</version>
+    <version>1.12</version>
     <type>modification</type>
 
     <install for="1.1.1 - 1.99.99">

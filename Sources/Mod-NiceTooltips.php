@@ -51,9 +51,8 @@ function NiceTooltip($body = '', $caption = '', $smileys = true, $cache_id = '')
         censorText($caption);
     }
 
-    // Fix broken bbcodes
-    //$body = preg_replace('/\[[^\/]+\].*$/i', '' , $body);
-
+    // Remove [hide] bbcode from tootips
+    $body = preg_replace('/\[hide.*/i', '' , $body);
 
     // Parse html code and smiles, replace unwanted entities.
     $body = htmlspecialchars(addslashes(parse_bbc($body, $smileys, $cache_id)));
