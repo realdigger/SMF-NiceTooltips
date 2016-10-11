@@ -40,9 +40,9 @@ function NiceTooltip($body = '', $caption = '', $smileys = true, $cache_id = '')
     height:auto; max-width: 200px;
 	</style>';
         $context['insert_after_template'] .= '
-	<script type="text/javascript" src="' . $settings['default_theme_url'] . '/scripts/overlib.js"></script>';
+	<script type="text/javascript" src="' . $settings['default_theme_url'] . '/scripts/overlib.min.js"></script>';
         $context['insert_after_template'] .= '
-	<script type="text/javascript" src="' . $settings['default_theme_url'] . '/scripts/overlib_adaptive_width.js"></script>
+	<script type="text/javascript" src="' . $settings['default_theme_url'] . '/scripts/overlib_adaptive_width.min.js"></script>
 	<script type="text/javascript"><!-- // --><![CDATA[
 	    var ol_close="[X]";
 	// ]]></script>';
