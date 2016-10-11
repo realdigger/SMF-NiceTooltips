@@ -58,9 +58,9 @@
 
     <operation>
 
-			<search position="replace"><![CDATA[SUBSTRING(ms.body, 1, 385) AS first_body]]></search>
+			<search position="replace"><![CDATA[SUBSTRING(ml.body, 1, 385) AS last_body]]></search>
 
-			<add><![CDATA[SUBSTRING(ms.body, 1, ' . (!empty($modSettings['NiceTooltips_lenght']) ? $modSettings['NiceTooltips_lenght'] : 385) . ') AS first_body]]></add>
+			<add><![CDATA[SUBSTRING(ml.body, 1, ' . (!empty($modSettings['NiceTooltips_lenght']) ? $modSettings['NiceTooltips_lenght'] : 385) . ') AS last_body]]></add>
 		</operation>
 
     <operation>
@@ -69,7 +69,7 @@
 
 			<add><![CDATA[     // * NiceTooltips mod
 	 require_once($sourcedir . '/Mod-NiceTooltips.php');
-     $row['nice_tooltip_first_msg'] = NiceTooltip($row['first_body'], $row['first_subject'], $row['first_smileys'], $row['id_first_msg']);
+     $row['nice_tooltip_first_msg'] = NiceTooltip($row['last_body'], $row['last_subject'], $row['last_smileys'], $row['id_last_msg']);
 
 ]]></add>
 
