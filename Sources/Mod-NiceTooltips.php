@@ -15,7 +15,7 @@ function NiceTooltip($body = '', $caption = '', $smileys = true, $cache_id = '')
 
     // Is it disabled or empty? Check permission. Don't show tooltips for mobiles.
     if (
-        (allowedTo('disable_nicetooltips') && empty($context['user']['is_admin'])) ||
+        (allowedTo('disable_nicetooltips', !empty($context['current_board']) ? $context['current_board'] : null) && empty($context['user']['is_admin'])) ||
         empty($modSettings['NiceTooltips_lenght']) ||
         empty($body) ||
         (!empty($context['browser']['is_iphone']) || !empty($context['browser']['is_android']))

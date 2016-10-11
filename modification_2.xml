@@ -96,6 +96,7 @@
 
 			<add><![CDATA[
 		// * NiceTooltips mod
+		'',
 		array('int', 'NiceTooltips_lenght'),
 		array('check', 'NiceTooltips_censored'),
 		array('text', 'NiceTooltips_FGCOLOR'),
@@ -111,12 +112,29 @@
             'label' => $txt['permissionname_disable_nicetooltips'],
             'subtext' => $txt['permissionhelp_disable_nicetooltips']
         ),
-		'',
 		// NiceTooltips mod *
 ]]></add>
 
     </operation>
     
+	</file>
+
+	<file name="$sourcedir/ManagePermissions.php">
+
+		<operation>
+
+			<search position="after"><![CDATA[	// All permission groups that will be shown in the left column on classic view.]]></search>
+
+			<add><![CDATA[
+	// * NiceTooltips mod
+	$permissionList['membergroup']['disable_nicetooltips'] = array(false, 'general', 'moderate_general');
+	$permissionList['board']['disable_nicetooltips'] = array(false, 'general_board', 'moderate');
+	// NiceTooltips mod *
+
+]]></add>
+
+		</operation>
+
 	</file>
 
 </modification>

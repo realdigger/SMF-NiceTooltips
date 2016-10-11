@@ -175,4 +175,22 @@ function ModifyNiceTooltipsSettings()
 
   </file>
 
+  <file name="$sourcedir/ManagePermissions.php">
+
+    <operation>
+
+            <search position="after"><![CDATA[	// All permission groups that will be shown in the left column.]]></search>
+
+            <add><![CDATA[
+	// * NiceTooltips mod
+	$permissionList['membergroup']['disable_nicetooltips'] = array(false, 'general', 'moderate_general');
+	$permissionList['board']['disable_nicetooltips'] = array(false, 'general_board', 'moderate');
+	// NiceTooltips mod *
+
+]]></add>
+
+    </operation>
+
+  </file>
+
 </modification>
