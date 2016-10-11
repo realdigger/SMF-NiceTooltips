@@ -29,7 +29,7 @@ function NiceTooltip($body = '', $caption = '', $smileys = true, $cache_id = '')
         $context['html_headers'] .= '
 	<style type="text/css">
 	.nice_tooltip_fgclass {
-	text-align: left;
+	text-align: ' . (empty($context['right_to_left']) ? 'left' : 'right') . ';
 	background-color: ' . $modSettings['NiceTooltips_FGCOLOR'] . ';
 	opacity: ' . $modSettings['NiceTooltips_OPACITY'] / 100 . ';
 	}
