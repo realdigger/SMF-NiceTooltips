@@ -71,6 +71,12 @@ if (isset($smcFunc))
 	array('variable' => 'string-255', 'value' => 'string-65534'),
 	array('NiceTooltips_DELAY', '0'),
 	array('variable'));
+
+	$smcFunc['db_insert']('ignore',
+	'{db_prefix}settings',
+	array('variable' => 'string-255', 'value' => 'string-65534'),
+	array('NiceTooltips_mobile', '0'),
+	array('variable'));
 }
 else
 // SMF 1.x
@@ -85,6 +91,7 @@ else
 	db_query("INSERT IGNORE INTO {$db_prefix}settings (`variable`, `value`) VALUES ('NiceTooltips_CAPCOLOR', '#FFFFFF') ", __FILE__, __LINE__);
 	db_query("INSERT IGNORE INTO {$db_prefix}settings (`variable`, `value`) VALUES ('NiceTooltips_OPACITY', '90') ", __FILE__, __LINE__);
 	db_query("INSERT IGNORE INTO {$db_prefix}settings (`variable`, `value`) VALUES ('NiceTooltips_DELAY', '0') ", __FILE__, __LINE__);
+	db_query("INSERT IGNORE INTO {$db_prefix}settings (`variable`, `value`) VALUES ('NiceTooltips_mobile', '0') ", __FILE__, __LINE__);
 }
 
 ?>

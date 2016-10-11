@@ -5,7 +5,7 @@
  * @author digger @ http://mysmf.ru
  * @copyright 2016, digger
  * @license Artistic License
- * @version 1.10
+ * @version 1.12
  */
 
 
@@ -15,10 +15,11 @@ function NiceTooltip($body = '', $caption = '', $smileys = true, $cache_id = '')
 
     // Is it disabled or empty? Check permission. Don't show tooltips for mobiles.
     if (
-        (allowedTo('disable_nicetooltips', !empty($context['current_board']) ? $context['current_board'] : null) && empty($context['user']['is_admin'])) ||
-        empty($modSettings['NiceTooltips_lenght']) ||
-        empty($body) ||
-        (!empty($context['browser']['is_iphone']) || !empty($context['browser']['is_android']))
+        (allowedTo('disable_nicetooltips',
+                !empty($context['current_board']) ? $context['current_board'] : null) && empty($context['user']['is_admin'])) ||
+                empty($modSettings['NiceTooltips_lenght']) ||
+                empty($body) ||
+                (empty($modSettings['NiceTooltips_mobile']) && (!empty($context['browser']['is_iphone']) || !empty($context['browser']['is_android'])))
     ) {
         return ' title="' . $caption . '" ';
     }
@@ -52,6 +53,7 @@ function NiceTooltip($body = '', $caption = '', $smileys = true, $cache_id = '')
 
     // Fix broken bbcodes
     //$body = preg_replace('/\[[^\/]+\].*$/i', '' , $body);
+
 
     // Parse html code and smiles, replace unwanted entities.
     $body = htmlspecialchars(addslashes(parse_bbc($body, $smileys, $cache_id)));

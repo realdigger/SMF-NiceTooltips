@@ -37,6 +37,7 @@ $txt['NiceTooltips_OPACITY'] = '[NiceTooltips] Полупрозрачность окна подсказки. 
 $txt['NiceTooltips_DELAY'] = '[NiceTooltips] Подсказка будет появляться после задержки заданной в миллисекундах. Целое число.';
 $txt['permissionname_disable_nicetooltips'] = 'Не показывать красивые подсказки (Мод NiceTooltips)';
 $txt['permissionhelp_disable_nicetooltips'] = 'Выключить отбражение красивых подсказок для этой группы (Мод NiceTooltips)';
+$txt['NiceTooltips_mobile'] = '[NiceTooltips] Показывать подсказки на мобильных устройствах';
 // Nice Tooltips mod *
 ]]></add>
     </operation>

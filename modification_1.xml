@@ -142,6 +142,7 @@ function ModifyNiceTooltipsSettings()
   $config_vars = array(
     array('int', 'NiceTooltips_lenght'),
     array('check', 'NiceTooltips_censored'),
+    array('check', 'NiceTooltips_mobile'),
     array('text', 'NiceTooltips_FGCOLOR'),
     array('text', 'NiceTooltips_BGCOLOR'),
     array('text', 'NiceTooltips_TEXTCOLOR'),
