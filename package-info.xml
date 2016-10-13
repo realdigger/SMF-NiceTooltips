@@ -12,46 +12,23 @@
 <package-info xmlns="http://www.simplemachines.org/xml/package-info">
     <id>digger:NiceTooltips</id>
     <name>NiceTooltips</name>
-    <version>1.13</version>
+    <version>1.14</version>
     <type>modification</type>
 
-    <install for="1.1.1 - 1.99.99">
-        <code>add_settings.php</code>
-        <modification>modification_1.xml</modification>
-        <modification>languages/english.xml</modification>
-        <modification>languages/russian.xml</modification>
-        <modification>languages/russian-utf8.xml</modification>
-        <require-dir name="Sources" destination="$boarddir"/>
-        <require-dir name="Themes" destination="$boarddir"/>
-        <redirect type="inline" url="?action=featuresettings;sa=nicetooltips"/>
-    </install>
-
-    <uninstall for="1.1.1 - 1.99.99">
-        <modification reverse="true">modification_1.xml</modification>
-        <modification reverse="true">languages/english.xml</modification>
-        <modification reverse="true">languages/russian.xml</modification>
-        <modification reverse="true">languages/russian-utf8.xml</modification>
-        <remove-file name="$sourcedir/Mod-NiceTooltips.php"/>
-        <remove-file name="$themedir/scripts/overlib.js"/>
-        <remove-file name="$themedir/scripts/overlib_adaptive_width.js"/>
-    </uninstall>
-
     <install for="2.0 RC2, 2.0 RC3, 2.0 RC4, 2.0 - 2.0.99">
+        <readme>README.md</readme>
         <database>add_settings.php</database>
-        <modification>modification_2.xml</modification>
-        <modification>languages/english.xml</modification>
-        <modification>languages/russian.xml</modification>
-        <modification>languages/russian-utf8.xml</modification>
+        <code>hooks.php</code>
+        <modification>modification.xml</modification>
         <require-dir name="Sources" destination="$boarddir"/>
         <require-dir name="Themes" destination="$boarddir"/>
-        <redirect url="?action=admin;area=modsettings;sa=general"/>
+        <redirect url="?action=admin;area=modsettings;sa=nicetooltips"/>
     </install>
 
     <uninstall for="2.0 RC2, 2.0 RC3, 2.0 RC4, 2.0 - 2.0.99">
-        <modification reverse="true">modification_2.xml</modification>
-        <modification reverse="true">languages/english.xml</modification>
-        <modification reverse="true">languages/russian.xml</modification>
-        <modification reverse="true">languages/russian-utf8.xml</modification>
+        <code>hooks.php</code>
+        <modification reverse="true">modification.xml</modification>
+        <remove-dir name="$languagedir/NiceTooltips"/>
         <remove-file name="$sourcedir/Mod-NiceTooltips.php"/>
         <remove-file name="$themedir/scripts/overlib.js"/>
         <remove-file name="$themedir/scripts/overlib_adaptive_width.js"/>

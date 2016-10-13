@@ -1,7 +1,7 @@
 # SMF NiceTooltips mod
 * **Author:** digger http://mysmf.ru
 * **License:** Artistic License 1.0
-* **Compatible with:** SMF 1.1, SMF 2.0
+* **Compatible with:** SMF 2.0
 
 ## Description
 This mod shows nice tooltips with the first posts previews for the topic's list.
