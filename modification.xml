@@ -27,14 +27,14 @@
 
 			<search position="replace"><![CDATA[SUBSTRING(mf.body, 1, 385) AS first_body]]></search>
 
-			<add><![CDATA[SUBSTRING(mf.body, 1, ' . (!empty($modSettings['NiceTooltips_lenght'] && $modSettings['NiceTooltips_board_type'] == 'first') ? $modSettings['NiceTooltips_lenght'] : 385) . ') AS first_body]]></add>
+			<add><![CDATA[SUBSTRING(mf.body, 1, ' . ((!empty($modSettings['NiceTooltips_lenght']) && $modSettings['NiceTooltips_board_type'] == 'first') ? $modSettings['NiceTooltips_lenght'] : 385) . ') AS first_body]]></add>
 		</operation>
 
 		<operation>
 
 			<search position="replace"><![CDATA[SUBSTRING(ml.body, 1, 385) AS last_body]]></search>
 
-			<add><![CDATA[SUBSTRING(ml.body, 1, ' . (!empty($modSettings['NiceTooltips_lenght'] && $modSettings['NiceTooltips_board_type'] == 'last') ? $modSettings['NiceTooltips_lenght'] : 385) . ') AS last_body]]></add>
+			<add><![CDATA[SUBSTRING(ml.body, 1, ' . ((!empty($modSettings['NiceTooltips_lenght']) && $modSettings['NiceTooltips_board_type'] == 'last') ? $modSettings['NiceTooltips_lenght'] : 385) . ') AS last_body]]></add>
 
 		</operation>
 
@@ -65,14 +65,14 @@
 
 		  <search position="replace"><![CDATA[SUBSTRING(ms.body, 1, 385) AS first_body]]></search>
 
-		  <add><![CDATA[SUBSTRING(ms.body, 1, ' . (!empty($modSettings['NiceTooltips_lenght'] && $modSettings['NiceTooltips_recent_type'] == 'first') ? $modSettings['NiceTooltips_lenght'] : 385) . ') AS first_body]]></add>
+		  <add><![CDATA[SUBSTRING(ms.body, 1, ' . ((!empty($modSettings['NiceTooltips_lenght']) && $modSettings['NiceTooltips_recent_type'] == 'first') ? $modSettings['NiceTooltips_lenght'] : 385) . ') AS first_body]]></add>
 	  </operation>
 
 	  <operation>
 
 		  <search position="replace"><![CDATA[SUBSTRING(ml.body, 1, 385) AS last_body]]></search>
 
-		  <add><![CDATA[SUBSTRING(ml.body, 1, ' . (!empty($modSettings['NiceTooltips_lenght'] && $modSettings['NiceTooltips_recent_type'] == 'last') ? $modSettings['NiceTooltips_lenght'] : 385) . ') AS last_body]]></add>
+		  <add><![CDATA[SUBSTRING(ml.body, 1, ' . ((!empty($modSettings['NiceTooltips_lenght']) && $modSettings['NiceTooltips_recent_type'] == 'last') ? $modSettings['NiceTooltips_lenght'] : 385) . ') AS last_body]]></add>
 
 	  </operation>
 
