@@ -129,6 +129,7 @@ function addNiceTooltipsAdminSettings($return_config = false)
         array('text', 'NiceTooltips_CAPCOLOR'),
         array('text', 'NiceTooltips_OPACITY'),
         array('int', 'NiceTooltips_DELAY'),
+        array('int', 'NiceTooltips_IMG_WIDTH'),
         '',
         array(
             'permissions',
@@ -222,7 +223,7 @@ function NiceTooltip($body = '', $caption = '', $smileys = true, $cache_id = '')
 	opacity: ' . $modSettings['NiceTooltips_OPACITY'] / 100 . ';
 	}
 	.nice_tooltip_bgclass img, .nice_tooltip_fgclass img{
-    height:auto; max-width: 200px;
+    height: auto; max-width: ' . $modSettings['NiceTooltips_IMG_WIDTH'] . 'px;
 	</style>';
         $context['insert_after_template'] .= '
 	<script type="text/javascript" src="' . $settings['default_theme_url'] . '/scripts/overlib.min.js"></script>';

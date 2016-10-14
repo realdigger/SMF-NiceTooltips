@@ -19,6 +19,7 @@ $txt['NiceTooltips_TEXTSIZE'] = 'Font size of the text inside the tooltip. An in
 $txt['NiceTooltips_CAPCOLOR'] = 'Color of the tooltip caption text. A string value. See NOTE above.';
 $txt['NiceTooltips_OPACITY'] = 'Opacity of the tooltip. An integer value (1-100).';
 $txt['NiceTooltips_DELAY'] = 'Tooltip will popup only after a certain delay specified in millisecs. An integer value.';
+$txt['NiceTooltips_IMG_WIDTH'] = 'Max images width (px). An integer value.';
 $txt['permissionname_disable_nicetooltips'] = 'Don\'t show nice tooltips (NiceTooltips Mod)';
 $txt['permissionhelp_disable_nicetooltips'] = 'Disable NiceTooltips Mod for this group. Also, you can change this for some boards with a <a href="' . $scripturl . '?action=admin;area=permissions;">group permissions</a>.';
 $txt['NiceTooltips_mobile'] = 'Show tooltips on mobile devices';

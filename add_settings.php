@@ -81,4 +81,11 @@ $smcFunc['db_insert']('ignore',
     array('variable' => 'string-255', 'value' => 'string-65534'),
     array('NiceTooltips_recent_type', 'first'),
     array('variable'));
+
+$smcFunc['db_insert']('ignore',
+    '{db_prefix}settings',
+    array('variable' => 'string-255', 'value' => 'string-65534'),
+    array('NiceTooltips_IMG_WIDTH', '200'),
+    array('variable'));
+
 ?>
