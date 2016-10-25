@@ -242,8 +242,8 @@ function NiceTooltip($body = '', $caption = '', $smileys = true, $cache_id = '')
     }
 
     // Fix unclosed [hide] bbcode
-    $open_hide_count = preg_match_all('/\[hide(.*)]/iU', $body);
-    $close_hide_count = preg_match_all('/\[\/hide]/iU', $body);
+    $open_hide_count = preg_match_all('/\[hide(.*)]/iU', $body, $matches);
+    $close_hide_count = preg_match_all('/\[\/hide]/iU', $body, $matches);
 
     $count = 0;
     if (!empty($open_hide_count) && (int)$close_hide_count < $open_hide_count) {
