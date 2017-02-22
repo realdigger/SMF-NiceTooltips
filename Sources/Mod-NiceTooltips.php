@@ -37,7 +37,7 @@ function addBoardTooltips(&$row)
             $row['id_first_msg']);
     } elseif ($modSettings['NiceTooltips_board_type'] == 'last') {
         $row['nice_tooltip_first_msg'] = NiceTooltip($row['last_body'],
-            '[' . $row['last_display_name']. '] ' . $row['last_subject'], $row['last_smileys'],
+            '[' . $row['last_display_name'] . '] ' . $row['last_subject'], $row['last_smileys'],
             $row['id_last_msg']);
     }
 
@@ -58,7 +58,7 @@ function addRecentTooltips(&$row)
             $row['id_first_msg']);
     } elseif ($modSettings['NiceTooltips_recent_type'] == 'last') {
         $row['nice_tooltip_first_msg'] = NiceTooltip($row['last_body'],
-            '[' . $row['last_poster_name']. '] ' . $row['last_subject'], $row['last_smileys'],
+            '[' . $row['last_poster_name'] . '] ' . $row['last_subject'], $row['last_smileys'],
             $row['id_last_msg']);
     }
 
@@ -241,17 +241,8 @@ function NiceTooltip($body = '', $caption = '', $smileys = true, $cache_id = '')
         censorText($caption);
     }
 
-    // Fix unclosed [hide] bbcode
-    $open_hide_count = preg_match_all('/\[hide(.*)]/iU', $body, $matches);
-    $close_hide_count = preg_match_all('/\[\/hide]/iU', $body, $matches);
-
-    $count = 0;
-    if (!empty($open_hide_count) && (int)$close_hide_count < $open_hide_count) {
-        while ($count < ($open_hide_count - (int)$close_hide_count)) {
-            $count++;
-            $body .= '[/hide]';
-        }
-    }
+    // Fix some unclosed bbcodes
+    $body = fixNiceTooltipsUnclosedTags($body);
 
     // Parse html code and smiles, replace unwanted entities.
     $body = htmlspecialchars(addslashes(parse_bbc($body, $smileys, $cache_id))) . '...';
@@ -271,4 +262,39 @@ function NiceTooltip($body = '', $caption = '', $smileys = true, $cache_id = '')
     unset($caption, $body);
     return $tooltip;
 }
- 
+
+/**
+ * Fix some unclosed bbcodes
+ * @param string $body
+ * @return string $body
+ */
+function fixNiceTooltipsUnclosedTags($body = '')
+{
+    global $modSettings;
+
+    $tags = array('hide', 'spoiler');
+
+    // Custom Hide Tags mod support
+    if (!empty($modSettings['custom_hide_tags'])) {
+        $tags = array_merge($tags, array_keys(@unserialize($modSettings['custom_hide_tags'])));
+    }
+
+    // Remove duplicates
+    $tags = array_unique($tags);
+
+    foreach ($tags as $tag) {
+
+        $open_hide_count = preg_match_all('/\[' . $tag . '(.*)]/iU', $body, $matches);
+        $close_hide_count = preg_match_all('/\[\/' . $tag . ']/iU', $body, $matches);
+
+        $count = 0;
+        if (!empty($open_hide_count) && (int)$close_hide_count < $open_hide_count) {
+            while ($count < ($open_hide_count - (int)$close_hide_count)) {
+                $count++;
+                $body .= '[/' . $tag . ']';
+            }
+        }
+    }
+
+    return $body;
+}
