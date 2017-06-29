@@ -1,5 +1,6 @@
+[![Build Status](https://travis-ci.org/realdigger/SMF-NiceTooltips.svg?branch=master)](https://travis-ci.org/realdigger/SMF-NiceTooltips)
 # SMF NiceTooltips mod
-* **Author:** digger http://mysmf.ru
+* **Author:** digger http://mysmf.net
 * **License:** Artistic License 1.0
 * **Compatible with:** SMF 2.0
 * **Languages:** English, Russian
