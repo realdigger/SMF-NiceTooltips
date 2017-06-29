@@ -2,6 +2,7 @@
 * **Author:** digger http://mysmf.ru
 * **License:** Artistic License 1.0
 * **Compatible with:** SMF 2.0
+* **Languages:** English, Russian
 
 ## Description
 This mod shows nice tooltips with the first posts previews for the topic's list.
