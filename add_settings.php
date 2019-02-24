@@ -1,14 +1,29 @@
 <?php
 /**
  * @package SMF NiceTooltips Mod
- * @author digger
- * @copyright 2009-2016
- * @license Artistic License 1.0
- * @version 1.10
+ * @file settings.php
+ * @author digger <digger@mysmf.net> <http://mysmf.net>
+ * @link https://mysmf.net
+ * @copyright Copyright (c) 2008-2018, digger
+ * @license The MIT License (MIT) https://opensource.org/licenses/MIT
+ * @version 1.8
+ *
  *
  * To run this install manually please make sure you place this
  * in the same place and SSI.php and index.php
  */
+
+global $user_info;
+
+if (file_exists(dirname(__FILE__) . '/SSI.php') && !defined('SMF')) {
+    require_once(dirname(__FILE__) . '/SSI.php');
+} elseif (!defined('SMF')) {
+    die('<b>Error:</b> Cannot install - please verify that you put this file in the same place as SMF\'s index.php and SSI.php files.');
+}
+
+if ((SMF == 'SSI') && !$user_info['is_admin']) {
+    die('Admin privileges required.');
+}
 
 $smcFunc['db_insert']('ignore',
     '{db_prefix}settings',
@@ -88,4 +103,6 @@ $smcFunc['db_insert']('ignore',
     array('NiceTooltips_IMG_WIDTH', '200'),
     array('variable'));
 
-?>
+if (SMF == 'SSI') {
+    echo 'Database changes are complete! <a href="/">Return to the main page</a>.';
+}
